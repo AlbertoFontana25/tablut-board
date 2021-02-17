@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/layout}">
+
+<head>
+<title>Tablut Board</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h2 class="text-dark">Login</h2>
+		<div class="row" th:if="${param.error}">
+			<div class="col-md-8 offset-md-2">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					Username o password errati.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<form th:action="@{/login}" method="POST" id="login-form">
+					<div class="form-group">
+						<label for="username">
+							Username:
+						</label> 
+						<input type="text" class="form-control" name="username" id="username" maxlength="40" autofocus />
+					</div>
+					<div class="form-group">
+						<label for="password">
+							Password:
+						</label>
+						<input type="password" class="form-control" name="password" id="password" maxlength="40" />
+					</div>
+					<br />
+					<div class="col-md-6 offset-md-3 text-center">
+						<input type="submit" class="btn btn-primary btn-block" name="accedi" value="ACCEDI" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

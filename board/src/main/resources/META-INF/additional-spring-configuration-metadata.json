@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "app-configuration.table.page-size",
+    "type": "java.lang.Long",
+    "description": "Page size of all applicatio tables"
+  },
+  {
+    "name": "app-configuration.admin.username",
+    "type": "java.lang.String",
+    "description": "Username of the admin of the application"
+  },
+  {
+    "name": "app-configuration.admin.password",
+    "type": "java.lang.String",
+    "description": "Password of the admin of the application"
+  },
+  {
+    "name": "app-configuration.game-server.server-script",
+    "type": "java.lang.String",
+    "description": "Name of the scipt of server game. Need '/' at the start"
+  },
+  {
+    "name": "app-configuration.game-server.args",
+    "type": "java.util.List<String>",
+    "description": "List of args for server game"
+  },
+  {
+    "name": "app-configuration.game-server.base-path",
+    "type": "java.lang.String",
+    "description": "Base path for the shell script. Need '/' at the start"
+  }
+]}

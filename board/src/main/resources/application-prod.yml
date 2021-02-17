@@ -1,0 +1,65 @@
+# CONFIGURE THIS FILE WITH PRODUCTION CONFIGURATION - PROFILE 'prod'
+# SERVER CONFIG
+server:
+  address: localhost
+  http2:
+    enabled: true
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+       
+# LOGGING CONFIG 
+#logging:
+#  file:
+#    path: ''
+#  level:
+#    root: INFO
+#  pattern:
+#    dateformat: dd/MM/yyyy HH:mm:ss
+
+# APPLICATION CONFIG
+spring:
+  application:
+    name: TablutBoard
+  datasource:
+    driver-class-name: org.h2.Driver
+    hikari:
+      connectionTestQuery: SELECT 1
+    url: jdbc:h2:file:./database/tablut-board
+    password: password
+    username: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: false
+    show-sql: true
+  profiles:
+    active: develop
+#  session:
+#    jdbc:
+#      initialize-schema: always
+    store-type: none
+  thymeleaf:
+    cache: false
+    
+app-configuration:
+  table:
+    page-size: 30
+  admin:
+    username: app-test
+    password: app-pwd
+  game-server:
+    server-script: /simple-test-server.sh
+    args: 
+      - first
+      - second
+    base-path: ./sh-script

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/layout}">
+
+<head>
+<title>Tablut Board - Tournaments</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h2 class="text-dark">Torneo</h2>
+		<div th:replace="fragments/cards :: card('Tornei', ~{::cardbody})">
+			<cardbody>
+				<div th:replace="fragments/tables :: tableShell(~{::trHead}, ~{::trBody})">
+					<trHead>
+						<tr>
+							<th style="width: 10%">Id torneo</th>
+							<th style="width: 25%">Nome</th>
+							<th style="width: 25%">Anno</th>
+							<th style="width: 30%">Data di creazione</th>
+							<th class="text-center" style="width: 10%"></th>
+						</tr>
+					</trHead>
+					<trBody>
+						<tr th:each="tournament : ${tournaments.getContent()}">
+							<td th:text="${tournament.idTournament}"></td>
+							<td th:text="${tournament.name}"></td>
+							<td th:text="${tournament.year}"></td>
+							<td th:text="${#temporals.format(tournament.creationDate, 'dd/MM/yyyy HH:mm')}"></td>
+							<td class="text-center">
+								<a th:href="@{${'/tournaments/' + tournament.idTournament}}">
+									<i class="fas fa-external-link-alt fa-lg"></i>
+								</a>
+							</td>
+						</tr>
+					</trBody>
+				</div>
+				<div th:replace="fragments/tables :: paginator(${tournaments.getNumber}, ${tournaments.getTotalPages}, '/tournaments', '')"></div>
+			</cardbody>
+		</div>
+				
+		<div th:replace="fragments/cards :: card('Nuovo torneo', ~{::cardbodynew})">
+			<cardbodynew>
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<form name="tournament" th:action="@{/tournaments}" method="POST" th:object="${tournament}">
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label for="nameInput">Nome</label>
+									<input id="nameInput" type="text" class="form-control" th:field="*{name}" aria-describedby="nameHelp" maxlength="50"/>
+									<small id="nameHelp" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-danger"></small>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="yearInput">Anno</label>
+									<input id="yearInput" type="text" class="form-control" th:field="*{year}" aria-describedby="yearHelp" maxlength="50"/>
+									<small id="yearHelp" th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="form-text text-danger"></small>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary-red btn-block">Salva</button>
+						</form>
+					</div>
+				</div>
+			</cardbodynew>
+		</div>
+	</div>
+
+</body>
+
+</html>

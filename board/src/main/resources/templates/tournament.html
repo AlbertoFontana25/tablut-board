@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/layout}">
+
+<head>
+<title>Tablut Board - Tournament</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h2 class="text-dark">Torneo #[[${tournament.idTournament}]]</h2>
+		<div th:replace="fragments/cards :: card('Torneo #' + ${tournament.idTournament}, ~{::cardbody})">
+			<cardbody>
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<form name="tournament" th:action="@{/tournaments}" method="POST" th:object="${tournament}">
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label for="nameInput">Nome</label>
+									<input id="nameInput" type="text" class="form-control" th:field="*{name}" aria-describedby="nameHelp" maxlength="50"/>
+									<small id="nameHelp" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-danger"></small>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="nameInput">Anno</label>
+									<input id="nameInput" type="text" class="form-control" th:field="*{name}" aria-describedby="nameHelp" maxlength="50"/>
+									<small id="nameHelp" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-danger"></small>
+								</div>
+							</div>
+<!-- 								<div class="form-group col-sm-4"> -->
+<!-- 									<label for="changeStato">&nbsp;</label> -->
+<!-- 									<button type="submit" class="form-control btn btn-success btn-block" id="changeStato">Cambia stato</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+						</form>
+					</div>
+				</div>
+				
+			</cardbody>
+		</div>
+		<div th:replace="fragments/cards :: card('Teams', ~{::cardbodyteam})">
+			<cardbodyteam>
+				<div th:replace="fragments/tables :: tableShell(~{::trHead}, ~{::trBody})">
+					<trHead>
+						<tr>
+							<th>Id team</th>
+							<th>Nome</th>
+							<th>Data di creazione</th>
+							<th class="text-right"></th>
+						</tr>
+					</trHead>
+					<trBody>
+						<tr th:each="team : ${tournament.teams}">
+							<td th:text="${team.idTeam}"></td>
+							<td th:text="${team.name}"></td>
+							<td th:text="${team.creationDate}"></td>
+							<td class="text-center">
+								<a th:href="@{${'/tournaments/' + tournament.idTournament + '/teams/' + team.idTeam}}">
+									<i class="fas fa-external-link-alt fa-lg"></i>
+								</a>
+							</td>
+						</tr>
+					</trBody>
+				</div>
+			</cardbodyteam>
+		</div>
+	</div>
+
+</body>
+
+</html>

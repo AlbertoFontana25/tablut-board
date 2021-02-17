@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/layout}">
+
+<head>
+<title>Tablut Board - Tournament</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<h2 class="text-dark">Team #[[${team.idTeam}]]</h2>
+		<div th:replace="fragments/cards :: card('Team #' + ${team.idTeam}, ~{::cardbody})">
+			<cardbody>
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<form name="tournament" th:action="@{/tournaments}" method="POST" th:object="${team}">
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label for="nameInput">Nome</label>
+									<input id="nameInput" type="text" class="form-control" th:field="*{name}" aria-describedby="nameHelp" maxlength="50"/>
+									<small id="nameHelp" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-danger"></small>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+			</cardbody>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div th:replace="fragments/cards :: card('White Player', ~{::cardbodywplayer})">
+					<cardbodywplayer>
+						<div class="row" th:with="whitePlayer = ${team.white.get()}" th:if="${team.white.isPresent()}">
+							<div class="col-2 fs-14">Id</div>
+							<div class="col-10 fs-18 font-weight-bold">[[${whitePlayer.idPlayer}]]</div>
+							<div class="col-2 fs-14">Nome</div>
+							<div class="col-10 fs-18 font-weight-bold">[[${whitePlayer.name}]]</div>
+							<div class="col-2 fs-14">Script</div>
+							<div class="col-10 fs-18"><pre>[[${whitePlayer.shellScript}]]</pre></div>
+						</div>
+					</cardbodywplayer>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div th:replace="fragments/cards :: card('Black Player', ~{::cardbodybplayer})">
+					<cardbodybplayer>
+						<div class="row" th:with="blackPlayer = ${team.black.get()}" th:if="${team.black.isPresent()}">
+							<div class="col-2 fs-14">Id</div>
+							<div class="col-10 fs-18 font-weight-bold">[[${blackPlayer.idPlayer}]]</div>
+							<div class="col-2 fs-14">Nome</div>
+							<div class="col-10 fs-18 font-weight-bold">[[${blackPlayer.name}]]</div>
+							<div class="col-2 fs-14">Script</div>
+							<div class="col-10 fs-18"><pre>[[${blackPlayer.shellScript}]]</pre></div>
+						</div>
+					</cardbodybplayer>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

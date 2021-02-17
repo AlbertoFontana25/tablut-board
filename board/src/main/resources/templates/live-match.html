@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/layout}">
+
+<head>
+	<title>Tablut Board</title>
+</head>
+<body>
+	
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-10">
+				<h2 class="text-dark">Live Match</h2>
+			</div>
+			<div class="col-2 text-right">
+				<i class="fas fa-circle fa-2x text-danger clickable" id="conn-icon" onclick="connect()"></i>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-6 d-flex align-items-center justify-content-center">
+				<div class="board-wrapper-b22ba">
+					<div class="board-b72b1">
+						<!-- first row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'a1', null, '1', null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'b1', 'star', null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'c1', 'star', null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'd1', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'e1', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'f1', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'g1', 'star', null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'h1', 'star', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'i1', null, null, null)"></div>
+						</div>
+						
+						<!-- second row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'a2', 'star', '2', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'e2', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h2', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'i2', 'star', null, null)"></div>
+						</div>
+						
+						<!-- third row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'a3', 'star', '3', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'e3', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h3', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'i3', 'star', null, null)"></div>
+						</div>
+						
+						<!-- fourth row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'a4', 'square', '4', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'e4', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h4', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'i4', 'square', null, null)"></div>
+						</div>
+						
+						<!-- fifth row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'a5', 'square', '5', null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'b5', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c5', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd5', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('orange-cell-1a3e', 'e5', 'plus', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f5', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g5', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'h5', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'i5', 'square', null, null)"></div>
+						</div>
+						
+						<!-- sixth row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'a6', 'square', '6', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'e6', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h6', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'i6', 'square', null, null)"></div>
+						</div>
+						
+						<!-- seventh row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'a7', 'star', '7', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'e7', 'circle', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h7', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'i7', 'star', null, null)"></div>
+						</div>
+						
+						<!-- eighth row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'a8', 'star', '8', null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'b8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'c8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'd8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'e8', 'square', null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'f8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'g8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'h8', null, null, null)"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'i8', 'star', null, null)"></div>
+						</div>
+						
+						<!-- ninth row -->
+						<div class="row-5277c">
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'a9', null, '9', 'a')"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'b9', 'star', null, 'b')"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'c9', 'star', null, 'c')"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'd9', 'square', null, 'd')"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'e9', 'square', null, 'e')"></div>
+							<div th:replace="fragments/board :: square('grey-cell-1a3e', 'f9', 'square', null, 'f')"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'g9', 'star', null, 'g')"></div>
+							<div th:replace="fragments/board :: square('light-blue-cell-1a3e', 'h9', 'star', null, 'h')"></div>
+							<div th:replace="fragments/board :: square('yellow-cell-1a3e', 'i9', null, null, 'i')"></div>
+						</div>
+					</div>
+				</div>		
+			</div>
+			<div class="col-xl-6">
+				<div th:replace="fragments/cards :: card('White Player', ~{::whitecardbody})">
+					<whitecardbody>
+						<div class="row py-0">
+							<div class="col-8">
+								<div class="row">
+									<div class="col-4">
+										<span class="fs-13">Name:</span>
+									</div>
+									<div class="col text-center">
+										<span class="text-uppercase fs-18" id="w-name">---</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">
+										<span class="fs-13">Last action:</span>
+									</div>
+									<div class="col text-center">
+										<span id="w-last-act" class="fs-18 text-uppercase d-none">
+											<span class="from"></span> <i class="fas fa-arrow-right"></i> <span class="to"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-2 align-items-center justify-content-center">
+								<i id="w-crown" class="fas fa-crown fa-3x main-color d-none"></i>
+							</div>
+							<div class="col d-flex align-items-center justify-content-center">
+								<span class="fs-20 font-weight-bold" id="w-timer">60</span>
+							</div>
+						</div>
+					</whitecardbody>
+				</div>
+				
+				<div th:replace="fragments/cards :: card('Black Player', ~{::blackcardbody})">
+					<blackcardbody>
+						<div class="row py-0">
+							<div class="col-8">
+								<div class="row">
+									<div class="col-4">
+										<span class="fs-13">Name:</span>
+									</div>
+									<div class="col text-center">
+										<span class="text-uppercase fs-18" id="b-name">---</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">
+										<span class="fs-13">Last action:</span>
+									</div>
+									<div class="col text-center">
+										<span id="b-last-act" class="fs-18 text-uppercase d-none">
+											<span class="from"></span> <i class="fas fa-arrow-right"></i> <span class="to"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-2 align-items-center justify-content-center">
+								<i id="b-crown" class="fas fa-crown fa-3x main-color d-none"></i>
+							</div>
+							<div class="col d-flex align-items-center justify-content-center">
+								<span class="fs-20 font-weight-bold" id="b-timer">60</span>
+							</div>
+						</div>
+					</blackcardbody>
+				</div>
+				
+				<div th:replace="fragments/cards :: cardbtn('Console', ~{::consolecardbody}, ~{::consolebtn})">
+					<consolebtn>
+						<a href="#" id="console-download" onclick="downloadInnerText('console.txt', 'board-console','text/plain');">
+							<i class="main-color fas fa-file-download fa-lg"></i>
+						</a>
+					</consolebtn>
+					<consolecardbody>
+						<div id="board-console" class="bg-dark text-light py-2 px-1 rounded board-console overflow-auto">
+							<div class="board-console-line blank-line">$ _</div>
+						</div>
+					</consolecardbody>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" th:src=@{/webjars/sockjs-client/1.1.2/sockjs.js}></script>
+		<script type="text/javascript" th:src=@{/webjars/stomp-websocket/2.3.3/stomp.js}></script>
+		<script type="text/javascript" th:src="@{js/tablutWebSocket.js}"></script>
+		<script type="text/javascript" th:src="@{js/timer.js}"></script>
+		<script type="text/javascript" th:src="@{js/custom-timer.js}"></script>
+		<script type="text/javascript" th:src="@{js/board.js}"></script>
+		<script type="text/javascript">
+			window.onload = connect();
+		</script>
+		
+	</div>
+	
+</body>
+
+</html>

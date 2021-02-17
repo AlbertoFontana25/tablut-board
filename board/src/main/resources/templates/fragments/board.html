@@ -1,0 +1,10 @@
+<div th:class="'square-55d63 ' + ${colorclass} + ' d-flex align-items-center justify-content-center'" th:id="${id}" th:data-square="${id}" th:fragment="square(colorclass, id, icon, numb, lett)">
+	<div class="notation-322f9 numeric-fc462" th:if="${numb != null}">[[${numb}]]</div>
+	<div class="notation-322f9 alpha-d2270" th:if="${lett != null}">[[${lett}]]</div>
+	<th:block th:switch="${icon}">
+		<i class="far fa-star fa-lg" th:case="'star'"></i>
+		<i class="far fa-square fa-lg" th:case="'square'"></i>
+		<i class="far fa-circle fa-lg" th:case="'circle'"></i>
+		<i class="fas fa-plus fa-lg" th:case="'plus'"></i>
+	</th:block>
+</div>

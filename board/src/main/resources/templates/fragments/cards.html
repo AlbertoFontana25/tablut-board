@@ -1,0 +1,52 @@
+<div class="card shadow mb-4" th:fragment="card(title, cardbody)">
+    <div class="card-header py-3">
+        <p class="main-color m-0 font-weight-bold" th:utext="${title}"></p>
+    </div>
+    <div class="card-body">
+    	<th:block th:replace="${cardbody}" />
+    </div>
+</div>
+
+<div class="card shadow mb-4" th:fragment="cardbtn(title, cardbody, custombtn)">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <p class="main-color m-0 font-weight-bold" th:utext="${title}"></p>
+        <th:block th:replace="${custombtn}" />
+    </div>
+    <div class="card-body">
+    	<th:block th:replace="${cardbody}" />
+    </div>
+</div>
+
+<div class="card shadow mb-4" th:fragment="carddropdown(title, cardbody, headId, collapseId, open)">
+	<a class="text-left card-header font-weight-bold main-color fs-16" th:id="${headId}" th:classappend="${open != true ? 'collapsed' : ''}" data-toggle="collapse" th:aria-expanded="${open}" th:aria-controls="${collapseId}" th:href="'#' + ${collapseId}" role="button">
+		<th:block th:replace="${title}" />
+	</a>
+	<div class="collapse" th:classappend="${open == true ? 'show' : ''}" th:id="${collapseId}">
+		<div class="card-body">
+		   	<th:block th:replace="${cardbody}" />
+		</div>
+	</div>
+</div>
+
+<div class="card shadow mb-4" th:fragment="cardmenu(title, cardbody, menu)">
+	<div class="card-header d-flex justify-content-between align-items-center">
+		<p class="main-color m-0 font-weight-bold" th:text="${title}"></p>
+		<div class="dropdown no-arrow">
+			<button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">
+				<i class="fas fa-ellipsis-v text-gray-400"></i>
+			</button>
+			<div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+				<th:block th:replace="${menu}" />
+				<!-- EXAMPLE 
+				<a class="dropdown-item" role="presentation" href="#">�Action</a>
+				<a class="dropdown-item" role="presentation" href="#">�Another action</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" role="presentation" href="#">�Something else here</a>
+				-->
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<th:block th:replace="${cardbody}" />
+	</div>
+</div>

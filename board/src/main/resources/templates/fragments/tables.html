@@ -1,0 +1,127 @@
+<div class="row" th:fragment="searchRow(newUrl, searchUrl)">
+	<div class="col-md-6" th:if="${newUrl} != null">
+		<a class="btn-primary btn-sm d-none d-sm-inline-block" role="button"
+			th:href="@{${newUrl}}"> <i
+			class="fas fa-plus fa-sm text-white"></i>&nbsp;Nuovo
+		</a>
+	</div>
+	<div class="col-md-6" th:classappend="${newUrl} == null ? 'offset-md-6' : ''" th:if="${searchUrl} != null">
+		<div class="text-md-right dataTables_filter" id="dataTable_filter">
+			<form th:action="@{${searchUrl}}" method="GET"
+				class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<div class="input-group">
+					<input class="bg-light form-control form-control-sm border-0 small"
+						name="search" type="text" aria-controls="dataTable"
+						placeholder="Cerca...">
+					<div class="input-group-append">
+						<button class="btn btn-primary py-0" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="table-responsive table mt-2" id="dataTable" role="grid"
+	aria-describedby="dataTable_info"
+	th:fragment="tableShell(tableHeader, tableBody)">
+	<table class="table dataTable my-0" id="dataTable">
+		<thead>
+			<th:block th:replace="${tableHeader}" />
+		</thead>
+		<tbody>
+			<th:block th:replace="${tableBody}" />
+		</tbody>
+		<tfoot>
+			<th:block th:replace="${tableHeader}" />
+		</tfoot>
+	</table>
+</div>
+
+<div class="row"
+	th:fragment="paginator(currentPage, totalPages, baseUrl, paginationParameter)">
+	<div class="col-md-6 align-self-center">
+		<p id="dataTable_info" class="dataTables_info" role="status"
+			aria-live="polite"
+			th:text="${'Pag. ' + (currentPage + 1) + ' di ' + totalPages}"></p>
+	</div>
+	<div class="col-md-6">
+		<nav class="border-0" aria-label="page navigation"
+			th:if="${currentPage != null && totalPages != null && totalPages > 1}">
+			<ul class="pagination justify-content-center pagination-sm">
+				<li class="page-item"
+					th:classappend="${currentPage == 0 ? 'disabled' : ''}"><a
+					class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${0} + ${paginationParameter}"
+					th:tabindex="${currentPage == 0 ? '-1' : '0'}"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Precedente</span>
+				</a></li>
+				<li class="page-item"
+					th:classappend="${currentPage == 0 ? 'disabled' : ''}"><a
+					class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${currentPage - 1} + ${paginationParameter}"
+					th:tabindex="${currentPage == 0 ? '-1' : '0'}"
+					aria-label="Previous"> <span aria-hidden="true">&lsaquo;</span>
+						<span class="sr-only">Precedente</span>
+				</a></li>
+				<li class="page-item disabled"
+					th:if="${currentPage > 2 && totalPages > 5}"><span
+					class="page-link main-color">...</span></li>
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(1, totalPages)}"
+					th:classappend="${currentPage == i - 1 ? 'active bg-main-color ' : ''}"
+					th:if="${totalPages <= 5}"><a class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${i - 1} + ${paginationParameter}"
+					th:text="${i}" th:tabindex="${currentPage == i - 1 ? '-1' : '0'}"></a>
+				</li>
+				<li class="page-item" th:each="i : ${#numbers.sequence(1, 5)}"
+					th:classappend="${currentPage == i - 1 ? 'active bg-main-color ' : ''}"
+					th:if="${totalPages > 5 && currentPage < 3}"><a
+					class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${i - 1} + ${paginationParameter}"
+					th:text="${i}" th:tabindex="${currentPage == i - 1 ? '-1' : '0'}"></a>
+				</li>
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(currentPage - 1, currentPage + 3)}"
+					th:classappend="${currentPage == i - 1 ? 'active bg-main-color ' : ''}"
+					th:if="${totalPages > 5 && currentPage >= 3 && currentPage < totalPages - 3}">
+					<a class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${i - 1} + ${paginationParameter}"
+					th:text="${i}" th:tabindex="${currentPage == i - 1 ? '-1' : '0'}"></a>
+				</li>
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(totalPages - 5, totalPages)}"
+					th:classappend="${currentPage == i - 1 ? 'active bg-main-color ' : ''}"
+					th:if="${totalPages > 5 && currentPage >= totalPages - 3}"><a
+					class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${i - 1} + ${paginationParameter}"
+					th:text="${i}" th:tabindex="${currentPage == i - 1 ? '-1' : '0'}"></a>
+				</li>
+				<li class="page-item disabled"
+					th:if="${currentPage < totalPages - 3 && totalPages > 5}"><span
+					class="page-link main-color">...</span></li>
+				<li class="page-item"
+					th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+					<a class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${currentPage + 1} + ${paginationParameter}"
+					th:tabindex="${currentPage == totalPages - 1 ? '-1' : '0'}"
+					aria-label="Next"> <span aria-hidden="true">&rsaquo;</span> <span
+						class="sr-only">Successivo</span>
+				</a>
+				</li>
+				<li class="page-item"
+					th:classappend="${currentPage == totalPages - 1 ? 'disabled' : ''}">
+					<a class="page-link main-color"
+					th:href="@{${baseUrl}} + '?' + 'page=' + ${totalPages - 1} + ${paginationParameter}"
+					th:tabindex="${currentPage == totalPages - 1 ? '-1' : '0'}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+						class="sr-only">Ultimo</span>
+				</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>

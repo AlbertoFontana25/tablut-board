@@ -1,0 +1,48 @@
+<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0 bg-main-color" th:fragment="sidebar">
+	<div class="container-fluid d-flex flex-column p-0">
+		<a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 mt-3" th:href="@{/}">
+			<span class="sidebar-brand-icon">
+				<img class="img-fluid" th:src="@{/images/logo.png}" />
+			</span>
+			<span class="sidebar-brand-text mx-3">
+				<span>TABLUT</span>
+			</span>
+		</a>
+		<hr class="sidebar-divider my-0">
+		<ul class="nav navbar-nav text-light mt-2" id="accordionSidebar">
+			<li class="nav-item">
+				<a class="nav-link" th:classappend="${page == 'dashboard' ? 'active' : ''}" th:href="@{/}">
+					<i class="fas fa-tachometer-alt"></i>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:classappend="${page == 'live-match' ? 'active' : ''}" th:href="@{/live-match}">
+					<i class="fas fa-play"></i>
+					<span>Live Match</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:classappend="${page == 'tournaments' ? 'active' : ''}" th:href="@{/tournaments}">
+					<i class="fas fa-chess"></i>
+					<span>Tornei</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:classappend="${page == 'admin-users' ? 'active' : ''}" th:href="@{/admin/users}">
+					<i class="fas fa-users-cog"></i>
+					<span>Utenti</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:classappend="${page == 'admin-settings' ? 'active' : ''}" th:href="@{/admin/settings}">
+					<i class="fas fa-cog"></i>
+					<span>Impostazioni</span>
+				</a>
+			</li>
+		</ul>
+		<div class="text-center d-none d-md-inline">
+			<button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+		</div>
+	</div>
+</nav>

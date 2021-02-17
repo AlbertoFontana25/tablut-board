@@ -1,0 +1,2 @@
+echo 'Fill this .sh file with the script that starts the server application'
+echo 'See this repo: https://github.com/AlbertoFontana25/TablutCompetition/tree/web-app-integration on the branch web-app-integration'
